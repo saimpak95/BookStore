@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>BookStore_Repository</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BookStore-DomainModels\BookStore-DomainModels.csproj" />
+    <ProjectReference Include="..\BookStore-DTO\BookStore-DTO.csproj" />
+  </ItemGroup>
+
+</Project>
