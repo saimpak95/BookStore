@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using BookStore_API.Helpers;
+using BookStore_Repository;
 
 namespace BookStore_API
 {
@@ -41,6 +42,7 @@ namespace BookStore_API
             services.AddCors(setupAction => setupAction.AddPolicy("CorsPolicy", policy => policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
             services.AddDbContext<DataContext>(optionsAction => optionsAction.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddAutoMapper(typeof(AutoMapperProfiles));
+            services.AddScoped<IAuthorRepository, AuthorRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

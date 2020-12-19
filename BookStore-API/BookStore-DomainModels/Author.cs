@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BookStore_DomainModels
 {
-    [Table("Authlors")]
+    [Table("Authors")]
     public partial class Author
     {
         
