@@ -1,16 +1,15 @@
 ﻿using BookStore_DomainModels;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BookStore_Repository
 {
-    public interface IAuthorRepository : IRepositoryBase<Author>{
+    public interface IAuthorRepository : IRepositoryBase<Author>
+    {
+    }
 
-        }
     public class AuthorRepository : IAuthorRepository
     {
         private readonly DataContext db;
@@ -19,6 +18,7 @@ namespace BookStore_Repository
         {
             this.db = db;
         }
+
         public async Task<bool> Create(Author entity)
         {
             await db.AddAsync(entity);
@@ -27,7 +27,7 @@ namespace BookStore_Repository
 
         public async Task<bool> Delete(Author entity)
         {
-            db.Remove(entity);
+            db.Authors.Remove(entity);
             return await Save();
         }
 
@@ -39,22 +39,30 @@ namespace BookStore_Repository
 
         public async Task<Author> FindByID(int Id)
         {
-            Author author =await db.Authors.Where(find => find.Id == Id).FirstOrDefaultAsync();
+            Author author = await db.Authors.Where(find => find.Id == Id).FirstOrDefaultAsync();
             return author;
+        }
+
+        public async Task<bool> IsExist(int Id)
+        {
+            var exist = await db.Authors.Where(find => find.Id == Id).FirstOrDefaultAsync();
+            if (exist != null)
+            {
+                return true;
+            }
+            return false;
         }
 
         public async Task<bool> Save()
         {
-            var changes =await db.SaveChangesAsync();
+            var changes = await db.SaveChangesAsync();
             return changes > 0;
         }
 
         public async Task<bool> Update(Author entity)
         {
-              db.Update(entity);
-              return await Save();
+            db.Authors.Update(entity);
+            return await Save();
         }
-
-   
     }
 }

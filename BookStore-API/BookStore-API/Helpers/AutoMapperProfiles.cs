@@ -1,10 +1,6 @@
 ﻿using AutoMapper;
 using BookStore_DomainModels;
 using BookStore_DTO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BookStore_API.Helpers
 {
@@ -16,7 +12,8 @@ namespace BookStore_API.Helpers
             CreateMap<Author, AuthorCreateDTO>().ReverseMap();
             CreateMap<Author, AuthorUpdateDTO>().ReverseMap();
             CreateMap<Book, BookDTO>().ReverseMap();
+            CreateMap<Book, BookCreateDTO>().ReverseMap();
+            CreateMap<Book, BookUpdateDTO>().ReverseMap();
         }
-       
     }
 }
